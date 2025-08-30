@@ -47,5 +47,28 @@ app.get("/api/weather", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(` Server running on http://localhost:${PORT}`);
+});
+
+
+//user data
+app.post("/user/save", async (req, res) => {
+  const uri = "mongodb://localhost:27017/";
+  const client = new MongoClient(uri);
+
+  await client.connect();
+  let db = client.db("customers");
+  let usercolllection = db.collection("userdetails");
+
+  
+  let age = req.body.age;
+  let gender = req.body.gender;
+  let pincode = req.body.pincode;
+  let symptoms = req.body.symptoms;
+
+  //include all fields in the document
+  let data = { age: age, pincode: pincode, gender: gender, symptoms: symptoms };
+    await usercolllection.insertOne(data);
+    res.json({ message: "data stored successfully" });
+   
 });

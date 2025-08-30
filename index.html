@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,13 +19,14 @@
 </div>
     <!-- Header -->
     <header>
-        <h1>Welcome to AirLytics</h1>
+        
+        <h1>airlytics</h1>
         <span>Know Your Air, Protect Your Health.</span>
         <nav>
             <a href="#">Home</a>
-            <a href="/about/index.html">About</a>
-            <a href="/contact/contact.html">Contact</a>
-            <a href="/userForm/index.html">Test Yourself</a>
+            <a href="about/index.html">About</a>
+            <a href="contact/contact.html">Contact</a>
+            <a href="userForm/index.html">Test Yourself</a>
         </nav>
     </header>
 
@@ -43,14 +44,14 @@
                 <div class="pm25">
                     <h2>PM2.5</h2>
                     <p>1ppm</p>
-                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">Very tiny particles that can reach deep into the lungs, affecting breathing and
                         heart health.</div>
                 </div>
                 <div class="pm10">
                     <h2>PM10</h2>
                     <p>20ppb</p>
-                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">Slightly larger dust-like particles that may cause coughing or discomfort in
                         people
                         with asthma or allergies.</div>
@@ -58,14 +59,14 @@
                 <div class="no2">
                     <h2>NO2</h2>
                     <p>30ppm</p>
-                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">Nitrogen dioxide, a gas that can irritate the lungs and lower resistance to
                         respiratory infections.</div>
                 </div>
                 <div class="o3">
                     <h2>O3</h2>
                     <p>40ppb</p>
-                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">Ozone, a gas that can cause respiratory issues and other health problems.</div>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                 <div class="tds">
                     <h2>TDS (Total Dissolved Solids)</h2>
                     <p>200ppm</p>
-                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">Total dissolved solids refer to the combined content of all inorganic and
                         organic
                         substances contained in a liquid.</div>
@@ -86,7 +87,7 @@
                 <div class="ph">
                     <h2>pH</h2>
                     <p>7.0</p>
-                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">pH is a measure of how acidic or basic water is. A pH of 7 is neutral, while
                         lower
                         values are more acidic and higher values are more basic.</div>
@@ -100,6 +101,52 @@
             <div class="reason">Reason: </div>
         </section>
 
+        <section class="inforamaticsAndFormulas">
+            <button class="expandBtn"><img src="assets/arrow.png"></button>
+            <h2>Working of our system</h2>
+            <ul>
+                <h3>Data Acquisiton</h3>
+                <li>Air Data: Fetched from OpenWeatherMap API using city name or geolocation (latitude/longitude).</li>
+                <li>Weather Data: Temperature, humidity, and weather condition.</li>
+                <li>Air Pollution Data: AQI and pollutant concentrations (PM2.5, PM10, NO<sub>2</sub>, O<sub>3</sub>).</li>
+                <li>User Input: Age, gender, pincode, and symptoms.</li>
+                
+                <h3>Weighted Risk Factor Calculation</h3>
+                Weighted Risk Factor Calculation
+                Weights assigned per pollutant like AQI has 0.35 weight, PM2.5 has 0.25 weight and so on.
+                
+                Score Mapping: Each pollutant scored 0–3 based on thresholds.
+                Overall Risk Score:
+                <pre><code>
+    totalScore = Σ(score_i × weight_i)
+    normalizedRisk = totalScore / Σ(weights)
+                </code></pre>
+                <li>
+                    Risk Level Assignment:
+            <pre>
+            0 – 0.5 → Low
+            0.5 – 1.5 → Moderate
+            1.5 – 2.5 → High
+            2.5 – 3 → Severe
+            </pre>
+                </li>
+                <h3>Visual Representation</h3>
+                <li>Gauge/Needle for AQI</li>
+                    <pre>Map AQI (0–500) to rotation angle (-90° to +90°).</pre>
+                    <pre>Formula: angle = ((AQI - min) / (max - min)) * 180 - 90</pre>
+
+                <li>Color Coding: </li>
+                    <pre>Green → Good, Orange → Moderate, Red → Bad, Maroon → Very Bad</pre>
+                    <pre>Applied to DOM elements for visual clarity.</pre>
+                
+                <h3>PDF report Generation</h3>
+                <li>
+                    Right now the self-diagnosis form completed by user, is being returned in a PDF Report format.
+                    But in the future, we seek to store this data securely in a database for using this data for ML prediction.
+                </li>
+            </ul>
+
+        </section>
         
     </section>
 </body>

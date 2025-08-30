@@ -147,8 +147,8 @@ async function getWeather(city) {
             no2: components.no2,
             o3: components.o3,
             aqi: aqi,
-            tds: 200, // placeholder, can be dynamic later
-            ph: 7.0  // placeholder, can be dynamic later
+            tds: 200, 
+            ph: 7.0
         };
 
         for (let key in dynamicData) {
@@ -212,15 +212,34 @@ async function getWeather(city) {
 // Run for default city
 getWeather("Kanpur");
 
+const tooltipBtns = document.querySelectorAll("tooltipBtn");
 // Tooltip system
-const tooltipBtns = document.querySelectorAll(".tooltipImg");
 tooltipBtns.forEach(btn => {
-    btn.addEventListener("mouseover", () => {
+    btn.addEventListener("click", () => {
         const tooltip = btn.nextElementSibling;
+        tooltip.style.opacity = "1";
+        tooltip.style.visibility = "visible";
         tooltip.style.display = "block";
     });
     btn.addEventListener("mouseout", () => {
         const tooltip = btn.nextElementSibling;
+        tooltip.style.opacity = "0";
+        tooltip.style.visibility = "hidden";
         tooltip.style.display = "none";
     });
 });
+
+
+// Adding shrink functionality to info box
+const infoBox = document.querySelector(".inforamaticsAndFormulas");
+const expandBtn = document.querySelector(".expandBtn");
+
+let isExpanded = false;
+
+expandBtn.addEventListener("click", () => {
+    infoBox.style.height = isExpanded ? "70px" : "max-content";
+    expandBtn.querySelector("img").style.transform = isExpanded ? "rotate(00deg)" : "rotate(90deg)";
+    
+    isExpanded = !isExpanded; // toggle the state
+});
+

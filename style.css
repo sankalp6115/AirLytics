@@ -1,8 +1,12 @@
+:root{
+    --primary: rgba(97, 97, 97, 0.3); 
+}
 body {
   margin: 0;
   font-family: "Raleway", sans-serif;
   overflow-x: hidden;
   background-color: #0f0f1a;
+  color: white;
 }
 /* Background Canvas */
 .background {
@@ -84,9 +88,6 @@ nav a:hover::before {
 }
 
 section.main {
-  /* display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  gap: 10px; */
   margin: 20px;
 }
 
@@ -104,7 +105,7 @@ section{
 /* Air Quality Section */
 section#air-quality {
   height: 300px;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: var(--primary);
   backdrop-filter: blur(5px);
   border-radius: 10px;
   display: flex;
@@ -116,6 +117,15 @@ section#air-quality {
   font-weight: 700;
   box-shadow: 2px 2px 10px black;
   flex-grow: 1;
+  position: relative;
+}
+section#air-quality span{
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 10;
 }
 div.data {
   display: flex;
@@ -134,7 +144,7 @@ div.temperature {
 div.aqi-indicator {
   height: 150px;
   width: 150px;
-  background-image: radial-gradient(rgb(10, 10, 10) 0 45%, transparent 45% 100%),
+  background-image: radial-gradient(rgb(0, 0, 0) 0 55%, transparent 55% 100%),
     conic-gradient(
       from -135deg,
       rgb(153, 255, 0) 0 15%,
@@ -167,7 +177,7 @@ section.air-pollutants {
   padding: 10px;
   border-radius: 10px;
   gap: 20px;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: var(--primary);
   backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
@@ -226,7 +236,7 @@ section.water-pollutants {
   max-width: 50%;
   padding: 10px;
   border-radius: 10px;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: var(--primary);
   backdrop-filter: blur(5px);
   z-index: -1;
 }
@@ -246,13 +256,12 @@ section.risk-card {
   width: 300px;
   padding: 20px;
   border-radius: 10px;
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: var(--primary);
   backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: -1;
 }
 .riskLevel {
   padding: 10px;
@@ -262,6 +271,22 @@ section.risk-card {
 .reason {
   font-size: 1.5em;
 }
+
+/* Early Warning */
+section.early-warning{
+    height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--primary);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+
+}
+
 
 .inforamaticsAndFormulas {
   background-color: rgb(20, 20, 20, 0.3);

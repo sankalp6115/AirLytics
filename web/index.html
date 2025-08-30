@@ -1,30 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Header -->
-     <header>
-         <h1>Welcome to VoidForge</h1>
-         <nav>
-             <span><a href="#home">Home</a></span>
-             <span><a href="#about">About</a></span>
-             <span><a href="#contact">Contact</a></span>
-         </nav>
-     </header>
+    <header>
+        <h1>Welcome to VoidForge</h1>
+        <nav>
+            <span><a href="#home">Home</a></span>
+            <span><a href="#about">About</a></span>
+            <span><a href="#contact">Contact</a></span>
+        </nav>
+    </header>
 
+    <section class="main">
+        <!-- Air quality section -->
+        <section id="air-quality"></section>
 
-     <!-- Air quality section -->
-      <section id="air-quality">
-        
-      </section>
+        <section class="air-pollutants">
+            <div class="pm25">
+                <h2>PM2.5</h2>
+                <p>1ppm</p>
+                <img src="/assets/info.png" class="tooltipImg" alt="">
+                <div class="tooltip">Very tiny particles that can reach deep into the lungs, affecting breathing and
+                    heart health.</div>
+            </div>
+            <div class="pm10">
+                <h2>PM10</h2>
+                <p>20ppb</p>
+                <img src="/assets/info.png" class="tooltipImg" alt="">
+                <div class="tooltip">Slightly larger dust-like particles that may cause coughing or discomfort in people
+                    with asthma or allergies.</div>
+            </div>
+            <div class="no2">
+                <h2>NO2</h2>
+                <p>30ppm</p>
+                <img src="/assets/info.png" class="tooltipImg" alt="">
+                <div class="tooltip">Nitrogen dioxide, a gas that can irritate the lungs and lower resistance to
+                    respiratory infections.</div>
+            </div>
+            <div class="o3">
+                <h2>O3</h2>
+                <p>40ppb</p>
+                <img src="/assets/info.png" class="tooltipImg" alt="">
+                <div class="tooltip">Ozone, a gas that can cause respiratory issues and other health problems.</div>
+            </div>
+        </section>
+
+        <section class="water-pollutants">
+            <div class="tds">
+                <h2>TDS (Total Dissolved Solids)</h2>
+                <p>200ppm</p>
+                <img src="/assets/info.png" class="tooltipImg" alt="">
+                <div class="tooltip">Total dissolved solids refer to the combined content of all inorganic and organic
+                    substances contained in a liquid.</div>
+            </div>
+            <div class="ph">
+                <h2>pH</h2>
+                <p>7.0</p>
+                <img src="/assets/info.png" class="tooltipImg" alt="">
+                <div class="tooltip">pH is a measure of how acidic or basic water is. A pH of 7 is neutral, while lower
+                    values are more acidic and higher values are more basic.</div>
+            </div>
+        </section>
+
+        <form action="" class="symptoms">
+            
+            <span id="privacy">This data will be <strong>kept confidential</strong>.</span>
+            
+            <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="0" required>
+            </div>
+            <div>
+                <label for="gender">Gender:</label>
+                <label for="male">Male:</label><input type="radio" name="gender" id="male" value="male">
+                <label for="female">Female:</label><input type="radio" name="gender" id="female" value="female">
+            </div>
+
+            <div>
+            <label for="symptoms">Symptoms:</label>
+                <label for="respiratory">Respiratory (Difficulty in Breathing)</label><input type="checkbox" name="symptoms" id="respiratory" value="respiratory">
+                <br>
+                <label for="fever">Mild Fever</label><input type="checkbox" name="symptoms" id="fever" value="fever">
+                <br>
+                <label for="gastrointestinal">Gastrointestinal Issues</label><input type="checkbox" name="symptoms" id="gastrointestinal" value="gastrointestinal">
+                <br>
+                <label for="skin">Skin Irritation</label><input type="checkbox" name="symptoms" id="skin" value="skin">
+                <br>
+
+                <textarea name="other" id="other" placeholder="Other symptoms..."></textarea>
+            </div>
+            <div>
+                <label for="pincode">PINCODE:</label>
+                <input type="text">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 </body>
 <script src="script.js"></script>
+
 </html>

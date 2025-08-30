@@ -15,11 +15,12 @@
 <body>
     <!-- Header -->
     <header>
-        <h1>Welcome to VoidForge</h1>
+        <h1>Welcome to AirLytics</h1>
+        <span>Know Your Air, Protect Your Health.</span>
         <nav>
-            <span><a href="#home">Home</a></span>
-            <span><a href="#about">About</a></span>
-            <span><a href="#contact">Contact</a></span>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
@@ -74,6 +75,12 @@
             </div>
         </section>
 
+        <section class="risk-card">
+            <h1>RISK</h1>
+            <div class="riskLevel">None</div>
+            <div class="reason">Reason: The AQI around you is high, stay indoors.</div>
+        </section>
+
         <form action="" class="symptoms">
             
             <span id="privacy">This data will be <strong>kept confidential</strong>.</span>
@@ -88,22 +95,17 @@
                 <label for="female">Female:</label><input type="radio" name="gender" id="female" value="female">
             </div>
 
-            <div>
-            <label for="symptoms">Symptoms:</label>
-                <label for="respiratory">Respiratory (Difficulty in Breathing)</label><input type="checkbox" name="symptoms" id="respiratory" value="respiratory">
-                <br>
-                <label for="fever">Mild Fever</label><input type="checkbox" name="symptoms" id="fever" value="fever">
-                <br>
-                <label for="gastrointestinal">Gastrointestinal Issues</label><input type="checkbox" name="symptoms" id="gastrointestinal" value="gastrointestinal">
-                <br>
-                <label for="skin">Skin Irritation</label><input type="checkbox" name="symptoms" id="skin" value="skin">
-                <br>
-
+            <div id="symptoms">
+                <h3>Symptoms:</h2>
+                <label for="respiratory">Respiratory (Difficulty in Breathing) <input type="checkbox" name="symptoms" id="respiratory" value="respiratory"></label>
+                <label for="fever">Mild Fever <input type="checkbox" name="symptoms" id="fever" value="fever"></label>
+                <label for="gastrointestinal">Gastrointestinal Issues <input type="checkbox" name="symptoms" id="gastrointestinal" value="gastrointestinal"></label>
+                <label for="skin">Skin Irritation <input type="checkbox" name="symptoms" id="skin" value="skin"></label>
                 <textarea name="other" id="other" placeholder="Other symptoms..."></textarea>
             </div>
             <div>
                 <label for="pincode">PINCODE:</label>
-                <input type="text">
+                <input type="number">
             </div>
             <button type="submit">Submit</button>
         </form>

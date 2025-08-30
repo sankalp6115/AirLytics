@@ -1,0 +1,70 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f4f7fc, #d6e4ff);
+  margin: 0;  
+  padding: 0;
+}
+
+/* Container */
+.contact-container {
+  max-width: 500px;
+  margin: 80px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Heading */
+.contact-container h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Paragraph */
+.contact-container p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  transition: background-color 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.contact-info p:hover {
+    background-color: #f0f0f0;
+}
+
+
+.contact-info i {
+  margin-right: 10px;
+  color: #0066cc;
+  font-size: 18px;
+}
+
+/* Links */
+.contact-container a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-container a:hover {
+  color: #004c99;
+  text-decoration: none;
+}

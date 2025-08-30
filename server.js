@@ -8,7 +8,6 @@ const PORT = 3000;
 
 app.use(cors());
 
-// const API_KEY = process.env.OPENWEATHERMAP_KEY;
 const API_KEY ='a8eca21a22c89ba4acce4f4c566699d0';
 
 app.get("/api/weather", async (req, res) => {

@@ -1,7 +1,12 @@
 # AirLytics – Know Your Air, Protect Your Health
 
-**Group Leader:** Sankalp  
-**Team Members:** [Add names of all other teammates]
+**Group Leader:** 
+- Sankalp Omar
+
+**Team Members:** 
+- Mohd Ashar Ahmad
+- Saksham Parashar
+- Sumit Singh Gautam
 
 ---
 
@@ -165,3 +170,4 @@ Our mission: **Empower users to make informed decisions about their environment 
 - OpenWeatherMap API for air quality and weather data
 - jsPDF library for PDF report generation
 - Team collaboration and support
+- chart.js for plotting of pie chart of pollutants

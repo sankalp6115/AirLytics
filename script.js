@@ -1,4 +1,4 @@
-// const cityName = window.prompt("Enter City Name");
+
 
 // Shooting stars background
 const canvas = document.getElementById("stars");
@@ -119,7 +119,7 @@ async function getWeather(city) {
     const aqiData = await aqiRes.json();
     const aqi = aqiData.list[0].main.aqi;
     const components = aqiData.list[0].components;
-
+    
     renderPollutantsChart(components);
 
     // Map AQI 1–5 to text
@@ -134,6 +134,7 @@ async function getWeather(city) {
         `;
 
     setNeedle(aqi);
+    const warnings = earlyWarning(aqi, components);
 
     // Update pollutants in HTML
     const elements = {
@@ -230,7 +231,6 @@ async function getWeather(city) {
     document.getElementById("air-quality").innerHTML =
       "⚠️ Could not fetch weather data.";
   }
-
 }
 
 // Run for default city
@@ -328,7 +328,7 @@ function renderPollutantsChart(components) {
         legend: {
           position: "top",
           labels: {
-            color: "000000",
+            color: "#ffffff",
             font: {
                 weight: "bold"
             }
@@ -338,3 +338,43 @@ function renderPollutantsChart(components) {
     },
   });
 }
+
+
+// Early warnings
+function earlyWarning(aqi, components) {
+    const warningBox = document.querySelector(".early-warning");
+    let warnings = [];
+    let severity = 0; // 0 = low, 1 = moderate, 2 = high, 3 = very high, 4 = hazardous
+
+    // AQI-based warning and severity
+    if (aqi <= 50) warnings.push("Air quality is Good. Enjoy your day!");
+    else if (aqi <= 100) { warnings.push("Air is Moderate. Sensitive people should reduce prolonged outdoor activity."); severity = Math.max(severity,1);}
+    else if (aqi <= 150) { warnings.push("Air is Unhealthy for Sensitive Groups. Children, elderly, and respiratory patients should stay indoors."); severity = Math.max(severity,2);}
+    else if (aqi <= 200) { warnings.push("Air is Unhealthy. Everyone should minimize outdoor activities."); severity = Math.max(severity,2);}
+    else if (aqi <= 300) { warnings.push("Air is Very Unhealthy. Avoid going outside; use air purifiers indoors."); severity = Math.max(severity,3);}
+    else { warnings.push("Air is Hazardous. Stay indoors; all outdoor activities are risky."); severity = Math.max(severity,4);}
+
+    // Pollutant-specific warnings
+    if (components.pm2_5 > 60) { warnings.push("High PM2.5 detected. Sensitive groups should stay indoors."); severity = Math.max(severity,2);}
+    if (components.pm10 > 150) { warnings.push("High PM10 (dust) levels. Wear a mask if going outside."); severity = Math.max(severity,2);}
+    if (components.no2 > 100) { warnings.push("NO2 levels are elevated. Avoid heavy outdoor exertion."); severity = Math.max(severity,2);}
+    if (components.o3 > 200) { warnings.push("Ozone levels are high. Limit outdoor activities."); severity = Math.max(severity,2);}
+    if (components.so2 > 75) { warnings.push("SO2 levels are elevated. Avoid outdoor activity if possible."); severity = Math.max(severity,2);}
+    if (components.co > 10) { warnings.push("CO levels are high. Stay indoors if possible."); severity = Math.max(severity,2);}
+
+    // Set background color based on severity
+    switch(severity) {
+        case 0: warningBox.style.backgroundColor = "greenyellow"; break;
+        case 1: warningBox.style.backgroundColor = "yellow"; break;
+        case 2: warningBox.style.backgroundColor = "orange"; break;
+        case 3: warningBox.style.backgroundColor = "red"; break;
+        case 4: warningBox.style.backgroundColor = "maroon"; break;
+    }
+
+    // Update DOM
+    warningBox.innerHTML = warnings.join("<br>");
+}
+
+
+// Usage
+document.querySelector(".early-warning").innerHTML = warnings.join("<br>");

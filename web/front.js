@@ -1,35 +1,3 @@
-/*age=document.querySelector("#age")
-pincode=document.querySelector("#pincode")
-
-
-  document.querySelectorAll('input[name="gender"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      console.log("Selected:", radio.value)
-     var gender=radio.value
-    });
-  });
-
- document.querySelectorAll('input[name="symptom"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      console.log("Selected symptom:", radio.value);
-    var symptom=radio.value
-    });
-  });
-data={age:age.value,pincode:pincode.value,gender:gender,symptom:symptom}
-console.log(data)
-buttoncontrol=document.querySelectorAll("#sub")
-buttoncontrol.addEventListener("click",()=>{
-fetch("http://localhost:8000/user/save",{method:"post",headers:
-        { "Content-Type": "application/json"},body:JSON.stringify(user)
-    })
-    .then(response=>response.json())
-    .then(data=>{
-        alert(data.message)
-
-    })
-})      
-*/
-
 const age = document.querySelector("#age");
 const pincode = document.querySelector("#pincode");
 

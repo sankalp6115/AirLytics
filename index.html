@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AirLytics - Live Healthy</title>
+    <link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
@@ -14,6 +15,9 @@
 </head>
 
 <body>
+    <!-- City  -->
+    <div id="cityInput"></div>
+
     <!-- Star Canvas -->
     <div class="background">
         <canvas id="stars" width="1536" height="695"></canvas>
@@ -101,9 +105,9 @@
                     <div class="tooltip">Ozone, a gas that can cause respiratory issues and other health problems.</div>
                 </div>
                 <!-- Canvas for making pie chart using chart.js -->
-                <section class="air-pollutants-chart">
-                    <canvas id="pollutantsChart" width="200" height="200"></canvas>
-                </section>
+                <div class="air-pollutants-chart">
+                    <canvas id="pollutantsChart"></canvas>
+                </div>
             </div>
 
             <span id="info">* Real-Time Data is fetched from OpenWeatherMap API.</span>
@@ -163,6 +167,11 @@
         </section>
 
     </section>
+<!-- Footer -->
+    <footer>
+        <p>Powered by <b>AirLytics</b></p>
+        <p>*Real-Time data provided by OpenWeatherMap</p>
+    </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>

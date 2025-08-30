@@ -25,7 +25,7 @@
 
 ## Project Overview
 
-AirLytics is a modern web application designed to provide **real-time insights into air and water quality** based on city-level data and user input. The system calculates a **weighted risk factor** for health and visually represents it using gauges, colors, and an interactive UI. Users can also download a **self-diagnosis PDF report** based on their inputs.
+AirLytics is a modern web application designed to provide **real-time insights into air and water quality** based on city-level data and user input. The system calculates a **weighted risk factor** for health and visually represents it using gauges, pie charts, colors, and an interactive UI. Users can also download a **self-diagnosis PDF report** based on their inputs.
 
 Our mission: **Empower users to make informed decisions about their environment and health.**
 
@@ -123,15 +123,13 @@ Our mission: **Empower users to make informed decisions about their environment 
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
-
+   git clone https://github.com/sankalp6115/AirLytics
    ```
 
 2. Navigate to project folder:
 
    ```bash
    cd AirLytics
-
    ```
 
 3. Install Dependancies:
@@ -149,19 +147,17 @@ Our mission: **Empower users to make informed decisions about their environment 
 
 - View:
 
-- Pollutant levels (PM2.5, PM10, NO₂, O₃, etc.) in µg/m³ or ppb
-
-- Overall risk level with color-coded indicator
-
-- Tooltip descriptions for each pollutant
-
-- Download PDF report of your self-diagnosis (click Submit)
+  - Pollutant levels (PM2.5, PM10, NO₂, O₃, etc.) in µg/m³ or ppb
+  - Overall risk level with color-coded indicator  
+  - Tooltip descriptions for each pollutant
+  - Download PDF report of your self-diagnosis (click Submit)
 
 ## Technologies Used
 
 - Frontend: HTML5, CSS3, JavaScript (Vanilla)
 - API: OpenWeatherMap (Weather & Air Pollution)
 - PDF Generation: jsPDF (for generating user's reports)
+- Chart.js: Generation of pie charts of air pollutants
 - Design: Responsive layouts, tooltips, gauges
 
 

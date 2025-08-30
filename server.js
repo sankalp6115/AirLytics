@@ -1,35 +1,38 @@
 const express = require("express");
-const fetch = require("node-fetch"); // npm install node-fetch
-require("dotenv").config(); // npm install dotenv
+const fetch = require("node-fetch"); // use node-fetch@2
+require("dotenv").config();
+const cors = require("cors");
 
 const app = express();
 const PORT = 3000;
 
-// Load API key from .env file
-const API_KEY = process.env.OPENWEATHERMAP_KEY;
-
-// Allow frontend access
-const cors = require("cors");
 app.use(cors());
 
-// Endpoint for weather + AQI
+// const API_KEY = process.env.OPENWEATHERMAP_KEY;
+const API_KEY ='a8eca21a22c89ba4acce4f4c566699d0';
+
 app.get("/api/weather", async (req, res) => {
   try {
     const { city, lat, lon } = req.query;
+    if (!city && (!lat || !lon)) {
+      return res.status(400).json({ error: "Provide city OR lat/lon" });
+    }
 
-    let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+    let weatherUrl = city
+      ? `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+      : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
-    // Fetch weather
     const weatherRes = await fetch(weatherUrl);
     const weatherData = await weatherRes.json();
 
-    // If lat/lon not given, extract from weather data
+    if (!weatherRes.ok) {
+      return res.status(weatherRes.status).json(weatherData);
+    }
+
     const latitude = lat || weatherData.coord.lat;
     const longitude = lon || weatherData.coord.lon;
 
-    let aqiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
-
-    // Fetch AQI
+    const aqiUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
     const aqiRes = await fetch(aqiUrl);
     const aqiData = await aqiRes.json();
 
@@ -42,6 +45,7 @@ app.get("/api/weather", async (req, res) => {
       pollutants: aqiData.list[0].components
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch data", details: err.message });
   }
 });

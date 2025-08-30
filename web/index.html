@@ -29,65 +29,74 @@
         <section id="air-quality"></section>
 
         <section class="air-pollutants">
-            <div class="pm25">
-                <h2>PM2.5</h2>
-                <p>1ppm</p>
-                <img src="/assets/info.png" class="tooltipImg" alt="">
-                <div class="tooltip">Very tiny particles that can reach deep into the lungs, affecting breathing and
-                    heart health.</div>
-            </div>
-            <div class="pm10">
-                <h2>PM10</h2>
-                <p>20ppb</p>
-                <img src="/assets/info.png" class="tooltipImg" alt="">
-                <div class="tooltip">Slightly larger dust-like particles that may cause coughing or discomfort in people
-                    with asthma or allergies.</div>
-            </div>
-            <div class="no2">
-                <h2>NO2</h2>
-                <p>30ppm</p>
-                <img src="/assets/info.png" class="tooltipImg" alt="">
-                <div class="tooltip">Nitrogen dioxide, a gas that can irritate the lungs and lower resistance to
-                    respiratory infections.</div>
-            </div>
-            <div class="o3">
-                <h2>O3</h2>
-                <p>40ppb</p>
-                <img src="/assets/info.png" class="tooltipImg" alt="">
-                <div class="tooltip">Ozone, a gas that can cause respiratory issues and other health problems.</div>
+            <h2>Air Quality</h2>
+            <div class="main-container">
+                <div class="pm25">
+                    <h2>PM2.5</h2>
+                    <p>1ppm</p>
+                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <div class="tooltip">Very tiny particles that can reach deep into the lungs, affecting breathing and
+                        heart health.</div>
+                </div>
+                <div class="pm10">
+                    <h2>PM10</h2>
+                    <p>20ppb</p>
+                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <div class="tooltip">Slightly larger dust-like particles that may cause coughing or discomfort in
+                        people
+                        with asthma or allergies.</div>
+                </div>
+                <div class="no2">
+                    <h2>NO2</h2>
+                    <p>30ppm</p>
+                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <div class="tooltip">Nitrogen dioxide, a gas that can irritate the lungs and lower resistance to
+                        respiratory infections.</div>
+                </div>
+                <div class="o3">
+                    <h2>O3</h2>
+                    <p>40ppb</p>
+                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <div class="tooltip">Ozone, a gas that can cause respiratory issues and other health problems.</div>
+                </div>
             </div>
         </section>
 
         <section class="water-pollutants">
-            <div class="tds">
-                <h2>TDS (Total Dissolved Solids)</h2>
-                <p>200ppm</p>
-                <img src="/assets/info.png" class="tooltipImg" alt="">
-                <div class="tooltip">Total dissolved solids refer to the combined content of all inorganic and organic
-                    substances contained in a liquid.</div>
-            </div>
-            <div class="ph">
-                <h2>pH</h2>
-                <p>7.0</p>
-                <img src="/assets/info.png" class="tooltipImg" alt="">
-                <div class="tooltip">pH is a measure of how acidic or basic water is. A pH of 7 is neutral, while lower
-                    values are more acidic and higher values are more basic.</div>
+            <h2>Water Quality</h2>
+            <div class="main-container">
+                <div class="tds">
+                    <h2>TDS (Total Dissolved Solids)</h2>
+                    <p>200ppm</p>
+                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <div class="tooltip">Total dissolved solids refer to the combined content of all inorganic and
+                        organic
+                        substances contained in a liquid.</div>
+                </div>
+                <div class="ph">
+                    <h2>pH</h2>
+                    <p>7.0</p>
+                    <img src="/assets/info.png" class="tooltipImg" alt="">
+                    <div class="tooltip">pH is a measure of how acidic or basic water is. A pH of 7 is neutral, while
+                        lower
+                        values are more acidic and higher values are more basic.</div>
+                </div>
             </div>
         </section>
 
         <section class="risk-card">
             <h1>RISK</h1>
             <div class="riskLevel">None</div>
-            <div class="reason">Reason: The AQI around you is high, stay indoors.</div>
+            <div class="reason">Reason: </div>
         </section>
 
         <form action="" class="symptoms">
-            
+
             <span id="privacy">This data will be <strong>kept confidential</strong>.</span>
-            
+
             <div>
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="0" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0" required>
             </div>
             <div>
                 <label for="gender">Gender:</label>
@@ -97,11 +106,15 @@
 
             <div id="symptoms">
                 <h3>Symptoms:</h2>
-                <label for="respiratory">Respiratory (Difficulty in Breathing) <input type="checkbox" name="symptoms" id="respiratory" value="respiratory"></label>
-                <label for="fever">Mild Fever <input type="checkbox" name="symptoms" id="fever" value="fever"></label>
-                <label for="gastrointestinal">Gastrointestinal Issues <input type="checkbox" name="symptoms" id="gastrointestinal" value="gastrointestinal"></label>
-                <label for="skin">Skin Irritation <input type="checkbox" name="symptoms" id="skin" value="skin"></label>
-                <textarea name="other" id="other" placeholder="Other symptoms..."></textarea>
+                    <label for="respiratory">Respiratory (Difficulty in Breathing) <input type="checkbox"
+                            name="symptoms" id="respiratory" value="respiratory"></label>
+                    <label for="fever">Mild Fever <input type="checkbox" name="symptoms" id="fever"
+                            value="fever"></label>
+                    <label for="gastrointestinal">Gastrointestinal Issues <input type="checkbox" name="symptoms"
+                            id="gastrointestinal" value="gastrointestinal"></label>
+                    <label for="skin">Skin Irritation <input type="checkbox" name="symptoms" id="skin"
+                            value="skin"></label>
+                    <textarea name="other" id="other" placeholder="Other symptoms..."></textarea>
             </div>
             <div>
                 <label for="pincode">PINCODE:</label>

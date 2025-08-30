@@ -7,19 +7,20 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<!-- Star Canvas -->
-<div class="background">
-    <canvas id="stars" width="1536" height="695"></canvas>
-</div>
+    <!-- Star Canvas -->
+    <div class="background">
+        <canvas id="stars" width="1536" height="695"></canvas>
+    </div>
     <!-- Header -->
     <header>
-        
+
         <h1>airlytics</h1>
         <span>Know Your Air, Protect Your Health.</span>
         <nav>
@@ -32,12 +33,41 @@
 
     <section class="main">
         <!-- Air quality section -->
+    <div class="packer">
         <section id="air-quality">
             <div class="aqi-indicator">
                 <div class="needle"></div>
             </div>
         </section>
 
+        <section class="water-pollutants">
+            <h2>Water Quality</h2>
+            <div class="main-container">
+                <div class="tds">
+                    <h2>TDS (Total Dissolved Solids)</h2>
+                    <p>200ppm</p>
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
+                    <div class="tooltip">Total dissolved solids refer to the combined content of all inorganic and
+                        organic
+                        substances contained in a liquid.</div>
+                </div>
+                <div class="ph">
+                    <h2>pH</h2>
+                    <p>7.0</p>
+                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
+                    <div class="tooltip">pH is a measure of how acidic or basic water is. A pH of 7 is neutral, while
+                        lower
+                        values are more acidic and higher values are more basic.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="risk-card">
+            <h1>RISK</h1>
+            <div class="riskLevel">None</div>
+            <div class="reason">Reason: </div>
+        </section>
+    </div>
         <section class="air-pollutants">
             <h2>Air Quality</h2>
             <div class="main-container">
@@ -69,36 +99,13 @@
                     <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
                     <div class="tooltip">Ozone, a gas that can cause respiratory issues and other health problems.</div>
                 </div>
+                <!-- Canvas for making pie chart using chart.js -->
+                <section class="air-pollutants-chart">
+                    <canvas id="pollutantsChart" width="200" height="200"></canvas>
+                </section>
             </div>
+
             <span id="info">* Real-Time Data is fetched from OpenWeatherMap API.</span>
-        </section>
-
-        <section class="water-pollutants">
-            <h2>Water Quality</h2>
-            <div class="main-container">
-                <div class="tds">
-                    <h2>TDS (Total Dissolved Solids)</h2>
-                    <p>200ppm</p>
-                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
-                    <div class="tooltip">Total dissolved solids refer to the combined content of all inorganic and
-                        organic
-                        substances contained in a liquid.</div>
-                </div>
-                <div class="ph">
-                    <h2>pH</h2>
-                    <p>7.0</p>
-                    <button class="tooltipBtn"><img src="assets/info.png" alt=""></button>
-                    <div class="tooltip">pH is a measure of how acidic or basic water is. A pH of 7 is neutral, while
-                        lower
-                        values are more acidic and higher values are more basic.</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="risk-card">
-            <h1>RISK</h1>
-            <div class="riskLevel">None</div>
-            <div class="reason">Reason: </div>
         </section>
 
         <section class="inforamaticsAndFormulas">
@@ -108,13 +115,14 @@
                 <h3>Data Acquisiton</h3>
                 <li>Air Data: Fetched from OpenWeatherMap API using city name or geolocation (latitude/longitude).</li>
                 <li>Weather Data: Temperature, humidity, and weather condition.</li>
-                <li>Air Pollution Data: AQI and pollutant concentrations (PM2.5, PM10, NO<sub>2</sub>, O<sub>3</sub>).</li>
+                <li>Air Pollution Data: AQI and pollutant concentrations (PM2.5, PM10, NO<sub>2</sub>, O<sub>3</sub>).
+                </li>
                 <li>User Input: Age, gender, pincode, and symptoms.</li>
-                
+
                 <h3>Weighted Risk Factor Calculation</h3>
                 Weighted Risk Factor Calculation
                 Weights assigned per pollutant like AQI has 0.35 weight, PM2.5 has 0.25 weight and so on.
-                
+
                 Score Mapping: Each pollutant scored 0–3 based on thresholds.
                 Overall Risk Score:
                 <pre><code>
@@ -123,7 +131,7 @@
                 </code></pre>
                 <li>
                     Risk Level Assignment:
-            <pre>
+                    <pre>
             0 – 0.5 → Low
             0.5 – 1.5 → Moderate
             1.5 – 2.5 → High
@@ -132,24 +140,26 @@
                 </li>
                 <h3>Visual Representation</h3>
                 <li>Gauge/Needle for AQI</li>
-                    <pre>Map AQI (0–500) to rotation angle (-90° to +90°).</pre>
-                    <pre>Formula: angle = ((AQI - min) / (max - min)) * 180 - 90</pre>
+                <pre>Map AQI (0–500) to rotation angle (-90° to +90°).</pre>
+                <pre>Formula: angle = ((AQI - min) / (max - min)) * 180 - 90</pre>
 
                 <li>Color Coding: </li>
-                    <pre>Green → Good, Orange → Moderate, Red → Bad, Maroon → Very Bad</pre>
-                    <pre>Applied to DOM elements for visual clarity.</pre>
-                
+                <pre>Green → Good, Orange → Moderate, Red → Bad, Maroon → Very Bad</pre>
+                <pre>Applied to DOM elements for visual clarity.</pre>
+
                 <h3>PDF report Generation</h3>
                 <li>
                     Right now the self-diagnosis form completed by user, is being returned in a PDF Report format.
-                    But in the future, we seek to store this data securely in a database for using this data for ML prediction.
+                    But in the future, we seek to store this data securely in a database for using this data for ML
+                    prediction.
                 </li>
             </ul>
 
         </section>
-        
+
     </section>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
 
 </html>

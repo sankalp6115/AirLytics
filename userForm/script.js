@@ -1,4 +1,6 @@
-const API_BASE = "http://127.0.0.1:3000";
+// Use Railway's environment variable for backend URL
+const API_BASE = process.env.API_BASE_URL || "https://airlytics-production.up.railway.app";
+
 // Form handling for userForm
 const age = document.querySelector("#age");
 const pincode = document.querySelector("#pincode");
@@ -41,7 +43,7 @@ buttoncontrol.addEventListener("click", (e) => {
 
   console.log("Sending data:", data);
 
-  fetch("/user/rsave", {
+  fetch(`${API_BASE}/user/rsave`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -57,10 +59,8 @@ buttoncontrol.addEventListener("click", (e) => {
     });
 });
 
-
-
 // === Fetch Air & Water Quality from FastAPI Backend ===
-fetch("/api/quality")
+fetch(`${API_BASE}/api/quality`)
   .then(response => response.json())
   .then(data => {
     console.log("Backend Data:", data);

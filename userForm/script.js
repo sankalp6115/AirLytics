@@ -49,7 +49,7 @@ buttoncontrol.addEventListener("click", (e) => {
     .then(response => response.json())
     .then(res => {
       // backend returns { id, risk, advice }
-      alert(Risk: ${res.risk}\nAdvice: ${res.advice});
+      alert(`Risk: ${res.risk}\nAdvice: ${res.advice}`);
     })
     .catch(err => {
       console.error("Error:", err);

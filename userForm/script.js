@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "http://127.0.0.1:3000";
 // Form handling for userForm
 const age = document.querySelector("#age");
 const pincode = document.querySelector("#pincode");

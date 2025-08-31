@@ -163,7 +163,7 @@ async function getWeather(city) {
 
         // Update color
         if (status === "Good")
-          elements[key].style.backgroundColor = "green";
+          elements[key].style.backgroundColor = "rgb(0, 190, 0)";
         else if (status === "Moderate")
           elements[key].style.backgroundColor = "orange";
         else if (status === "Bad") elements[key].style.backgroundColor = "red";
@@ -209,7 +209,7 @@ async function getWeather(city) {
 
     if (riskLevelValue < 0.5) {
       riskLevelText = "Low";
-      riskLevel.style.backgroundColor = "green";
+      riskLevel.style.backgroundColor = "rgb(0, 190, 0)";
     } else if (riskLevelValue < 1.5) {
       riskLevelText = "Moderate";
       riskLevel.style.backgroundColor = "orange";
@@ -234,22 +234,8 @@ async function getWeather(city) {
 
 
 getWeather("Kanpur");
-const tooltipBtns = document.querySelectorAll("tooltipBtn");
-// Tooltip system
-tooltipBtns.forEach((btn) => {
-  btn.addEventListener("mouseover", () => {
-    const tooltip = btn.nextElementSibling;
-    tooltip.style.opacity = "1";
-    tooltip.style.visibility = "visible";
-    tooltip.style.display = "block";
-  });
-  btn.addEventListener("mouseout", () => {
-    const tooltip = btn.nextElementSibling;
-    tooltip.style.opacity = "0";
-    tooltip.style.visibility = "hidden";
-    tooltip.style.display = "none";
-  });
-});
+
+
 
 // Adding shrink functionality to info box
 const infoBox = document.querySelector(".inforamaticsAndFormulas");
@@ -400,7 +386,7 @@ function earlyWarning(aqi, components) {
   warningBox.classList.remove("pulse"); // reset animation
   switch (severity) {
     case 0:
-      warningBox.style.backgroundColor = "green";
+      warningBox.style.backgroundColor = "rgb(0, 190, 0)";
       break;
     case 1:
       warningBox.style.backgroundColor = "yellow";

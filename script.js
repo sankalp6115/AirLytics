@@ -1,36 +1,3 @@
-// City getting from user
-// Function to get city
-
-//Help from an AI was taken to hanle localstorage Data Exchange
-function getCity() {
-    let city = localStorage.getItem("userCity");
-
-    if (!city) {
-        city = window.prompt("Enter your city name:");
-        if (city) {
-            localStorage.setItem("userCity", city);
-        } else {
-            city = "Kanpur"; // fallback
-        }
-    }
-
-    return city;
-}
-
-function updateCity() {
-    const newCity = window.prompt("Enter a new city name:");
-    if (newCity) {
-        localStorage.setItem("userCity", newCity);
-        location.reload();
-    }
-}
-
-
-const cityName = getCity();
-
-getWeather(cityName);
-
-
 // Shooting stars background
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
@@ -196,7 +163,7 @@ async function getWeather(city) {
 
         // Update color
         if (status === "Good")
-          elements[key].style.backgroundColor = "greenyellow";
+          elements[key].style.backgroundColor = "green";
         else if (status === "Moderate")
           elements[key].style.backgroundColor = "orange";
         else if (status === "Bad") elements[key].style.backgroundColor = "red";
@@ -242,7 +209,7 @@ async function getWeather(city) {
 
     if (riskLevelValue < 0.5) {
       riskLevelText = "Low";
-      riskLevel.style.backgroundColor = "greenyellow";
+      riskLevel.style.backgroundColor = "green";
     } else if (riskLevelValue < 1.5) {
       riskLevelText = "Moderate";
       riskLevel.style.backgroundColor = "orange";
@@ -265,6 +232,8 @@ async function getWeather(city) {
   }
 }
 
+
+getWeather("Kanpur");
 const tooltipBtns = document.querySelectorAll("tooltipBtn");
 // Tooltip system
 tooltipBtns.forEach((btn) => {
@@ -431,7 +400,7 @@ function earlyWarning(aqi, components) {
   warningBox.classList.remove("pulse"); // reset animation
   switch (severity) {
     case 0:
-      warningBox.style.backgroundColor = "greenyellow";
+      warningBox.style.backgroundColor = "green";
       break;
     case 1:
       warningBox.style.backgroundColor = "yellow";

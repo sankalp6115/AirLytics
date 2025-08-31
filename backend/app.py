@@ -5,9 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from fastapi.responses import FileResponse
-from pathlib import path
+import os
 
-# Optional import for MySQL — guard so server still starts if package missing
+# Optional MySQL import
 try:
     import mysql.connector
     MYSQL_AVAILABLE = True
@@ -22,9 +22,10 @@ app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
 static_dir = BASE_DIR / "userForm"
 
+# CORS: Restrict to your front-end's Railway URL
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
+    allow_origins=[os.getenv("FRONTEND_URL", "https://your-frontend.railway.app")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,10 +47,10 @@ def get_quality():
         
     try:
         conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Ashar@12345",
-            database="airlytics"
+            host=os.getenv("MYSQL_HOST"),
+            user=os.getenv("MYSQL_USER"),
+            password=os.getenv("MYSQL_PASSWORD"),
+            database=os.getenv("MYSQL_DATABASE")
         )
         cur = conn.cursor(dictionary=True)
         cur.execute("SELECT * FROM pollution_data ORDER BY recorded_at DESC LIMIT 1")
@@ -58,11 +59,9 @@ def get_quality():
         conn.close()
         return data if data else {"message": "No data yet"}
     except mysql.connector.Error as e:
-        # Log error to console and return HTTP 500
         print("Database error in /api/quality:", e)
         raise HTTPException(status_code=500, detail="Database error")
 
-# Replace existing save handler with a safer per-request DB implementation
 @app.post("/user/rsave")
 def save_assessment(user: Submission):
     if not MYSQL_AVAILABLE:
@@ -79,10 +78,10 @@ def save_assessment(user: Submission):
 
     try:
         conn = mysql.connector.connect(
-            host= os.getenv("MYSQL_HOST"),
-            user= os.getenv("MYSQL_USER"),
-            password= os.getenv("MYSQL_PASSWORD"),
-            database="os.getenv("MYSQL_DATABASE")
+            host=os.getenv("MYSQL_HOST"),
+            user=os.getenv("MYSQL_USER"),
+            password=os.getenv("MYSQL_PASSWORD"),
+            database=os.getenv("MYSQL_DATABASE")
         )
         cur = conn.cursor()
         cur.execute(
@@ -117,18 +116,14 @@ def save_assessment(user: Submission):
 
     return {"id": inserted_id, "risk": risk_level, "advice": advice}
 
-
-# SPA catch-all (placed after API routes so APIs are matched first)
+# SPA catch-all
 @app.get("/{full_path:path}")
 async def serve_spa(full_path: str):
-    # If this looks like an API route, return 404 and let the client handle it
     if full_path.startswith("api/"):
         raise HTTPException(status_code=404, detail="API route not found")
 
-    # If the requested file exists in the web folder, serve it (allows script.js, style.css, etc.)
     requested = static_dir / full_path
     if full_path and requested.exists() and requested.is_file():
         return FileResponse(requested)
 
-    # Otherwise, serve index.html (SPA entrypoint)
     return FileResponse(static_dir / "index.html")

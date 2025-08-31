@@ -116,7 +116,6 @@ section#air-quality {
   gap: 10px;
   padding: 10px;
   font-weight: 700;
-  box-shadow: 2px 2px 10px black;
   flex-grow: 1;
   position: relative;
 }
@@ -202,7 +201,8 @@ section.air-pollutants > div > div:not(.tooltip) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
+  min-height: 300px;
+  min-width: 150px;
   position: relative;
 }
 div.tooltip {
@@ -214,10 +214,10 @@ div.tooltip {
   border-radius: 5px;
   pointer-events: none;
   transform: translateY(140px);
-
-  opacity: 0; /* start hidden */
+z-index: 100;
+  opacity: 1;
   transition: opacity 0.3s ease;
-  visibility: hidden; /* hide from layout */
+  visibility: hidden;
 }
 button.tooltipBtn {
   background-color: transparent;
@@ -289,9 +289,9 @@ section.early-warning{
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 5px rgba(255,0,0,0.5); }
-  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,0,0,0.8); }
-  100% { transform: scale(1); box-shadow: 0 0 5px rgba(255,0,0,0.5); }
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,0,0.5); }
+  50% { transform: scale(1.03); box-shadow: 0 0 20px rgba(255,0,0,0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,0,0.5); }
 }
 
 .early-warning.pulse {
@@ -305,7 +305,6 @@ section.early-warning{
   color: white;
   backdrop-filter: blur(4px);
   z-index: 0;
-  grid-row: span 3;
   height: 70px;
   overflow: hidden;
   transform-origin: top;

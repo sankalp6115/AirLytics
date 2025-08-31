@@ -158,11 +158,11 @@ async function getWeather(city) {
     const aqiLevels = ["", "Good", "Fair", "Moderate", "Poor", "Very Poor"];
 
     document.getElementById("air-quality").innerHTML += `
-            🌍 City: ${weatherData.name}<br>
-            🌫️ AQI: ${aqiLevels[aqi]}<br>
-            🌡️ Temperature: ${weatherData.main.temp}°C<br>
-            ⛅ Condition: ${weatherData.weather[0].description}<br>
-            💧 Humidity: ${weatherData.main.humidity}%<br>
+            City: ${weatherData.name}<br>
+            AQI: ${aqiLevels[aqi]}<br>
+            Temperature: ${weatherData.main.temp}°C<br>
+            Condition: ${weatherData.weather[0].description}<br>
+            Humidity: ${weatherData.main.humidity}%<br>
         `;
 
     setNeedle(aqi);

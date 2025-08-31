@@ -1,81 +1,58 @@
-// Use Railway's environment variable for backend URL
-const API_BASE = process.env.API_BASE_URL || "https://airlytics-production.up.railway.app";
-
-// Form handling for userForm
 const age = document.querySelector("#age");
 const pincode = document.querySelector("#pincode");
-const name = document.querySelector("#name");
-const buttoncontrol = document.querySelector("#sub");
 
-// declare globally
+// Declare gender & symptom globally
 let gender = "";
-let symptoms = [];
+let symptom = "";
 
 // Gender radios
 document.querySelectorAll('input[name="gender"]').forEach(radio => {
   radio.addEventListener('change', () => {
     gender = radio.value;
-    console.log("Selected gender:", gender);
   });
 });
 
-// Note: HTML checkboxes use name="symptom" — select that
-document.querySelectorAll('input[name="symptom"]').forEach(checkbox => {
+// Symptom checkboxes (multiple allowed)
+document.querySelectorAll('input[name="symptoms"]').forEach(checkbox => {
   checkbox.addEventListener('change', () => {
-    // collect all checked
-    symptoms = Array.from(document.querySelectorAll('input[name="symptom"]:checked'))
-      .map(cb => cb.value);
-    console.log("Selected symptoms:", symptoms);
+    // Gather all checked symptoms
+    const checked = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(cb => cb.value);
+    symptom = checked.join(", ");
   });
 });
 
-// Handle Submit
+const buttoncontrol = document.querySelector("form button[type='submit']");
+
+// On form submit
 buttoncontrol.addEventListener("click", (e) => {
-  e.preventDefault(); // prevent page refresh
+  e.preventDefault(); // prevent actual form submission
+
+  const otherSymptom = document.querySelector("#other").value;
 
   const data = {
-    name: name.value,
     age: age.value,
     pincode: pincode.value,
     gender: gender,
-    symptoms: symptoms
+    symptom: symptom + (otherSymptom ? `, ${otherSymptom}` : "")
   };
 
-  console.log("Sending data:", data);
+  // Generate PDF
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-  fetch(`${API_BASE}/user/rsave`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .then(res => {
-      // backend returns { id, risk, advice }
-      alert(`Risk: ${res.risk}\nAdvice: ${res.advice}`);
-    })
-    .catch(err => {
-      console.error("Error:", err);
-      alert("Failed to save assessment. See console for details.");
-    });
+  doc.setFontSize(18);
+  doc.text("AirLytics - Health Report", 105, 20, { align: "center" });
+
+  doc.setFontSize(12);
+  doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 35);
+  doc.text(`Age: ${data.age}`, 14, 45);
+  doc.text(`Gender: ${data.gender}`, 14, 55);
+  doc.text(`Pincode: ${data.pincode}`, 14, 65);
+  doc.text(`Symptoms: ${data.symptom || "None"}`, 14, 75);
+
+  doc.setFontSize(10);
+  doc.text("Thank you for using AirLytics!", 105, 100, { align: "center" });
+
+  // Download PDF
+  doc.save(`AirLytics_Report_${data.pincode || "user"}.pdf`);
 });
-
-// === Fetch Air & Water Quality from FastAPI Backend ===
-fetch(`${API_BASE}/api/quality`)
-  .then(response => response.json())
-  .then(data => {
-    console.log("Backend Data:", data);
-
-    const pm25El = document.getElementById("pm25");
-    if (pm25El) pm25El.innerText = (data.pm25 ?? "-") + " µg/m³";
-    const pm10El = document.getElementById("pm10");
-    if (pm10El) pm10El.innerText = (data.pm10 ?? "-") + " µg/m³";
-    const no2El = document.getElementById("no2");
-    if (no2El) no2El.innerText = (data.no2 ?? "-") + " ppm";
-    const o3El = document.getElementById("o3");
-    if (o3El) o3El.innerText = (data.o3 ?? "-") + " ppb";
-    const tdsEl = document.getElementById("tds");
-    if (tdsEl) tdsEl.innerText = (data.tds ?? "-") + " ppm";
-    const phEl = document.getElementById("ph");
-    if (phEl) phEl.innerText = (data.ph ?? "-");
-  })
-  .catch(error => console.error("Error fetching /api/quality:", error));
